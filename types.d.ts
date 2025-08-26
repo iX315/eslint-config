@@ -1,0 +1,1 @@
+declare module "@ix315/eslint-config";
