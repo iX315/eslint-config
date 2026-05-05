@@ -2,14 +2,13 @@ import { defineConfig } from 'eslint/config'
 import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import eslintPluginStylistic from '@stylistic/eslint-plugin'
-import eslintPluginImport from 'eslint-plugin-import'
-import eslintPluginReact from 'eslint-plugin-react'
+import eslintPluginReact from '@eslint-react/eslint-plugin'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 
 export default defineConfig([
   eslint.configs.recommended,
   tseslint.configs.recommended,
-  eslintPluginReact.configs.flat['jsx-runtime'],
+  eslintPluginReact.configs["recommended-typescript"],
   {
     name: 'react',
     settings: {
@@ -18,75 +17,17 @@ export default defineConfig([
       }
     }
   },
-  eslintPluginReactHooks.configs['recommended-latest'],
+  {
+    name: 'react-hooks',
+    plugins: {
+      'react-hooks': eslintPluginReactHooks
+    },
+    rules: eslintPluginReactHooks.configs['recommended-latest'].rules
+  },
   {
     name: 'typing',
     rules: {
       '@typescript-eslint/no-explicit-any': ['off']
-    }
-  },
-  {
-    name: 'imports',
-    plugins: {
-      import: eslintPluginImport
-    },
-    settings: {
-      'import/parsers': {
-        '@typescript-eslint/parser': [
-          '.ts',
-          '.tsx'
-        ]
-      },
-      'import/resolver': {
-        'typescript': {
-          'alwaysTryTypes': true
-        }
-      }
-    },
-    rules: {
-      'import/order': [
-        'warn',
-        {
-          'newlines-between': 'always',
-          'pathGroups': [
-            {
-              pattern: '@/**',
-              group: 'internal'
-            }
-          ],
-          'groups': [
-            [
-              'builtin',
-              'external'
-            ],
-            'internal',
-            [
-              'parent',
-              'sibling',
-              'index',
-              'object'
-            ],
-            'type'
-          ],
-          'pathGroupsExcludedImportTypes': [
-            'internal',
-            'type'
-          ]
-        }
-      ],
-      'import/newline-after-import': 'error',
-      'import/consistent-type-specifier-style': [
-        'error',
-        'prefer-top-level'
-      ],
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        {
-          disallowTypeAnnotations: true,
-          fixStyle: 'separate-type-imports',
-          prefer: 'type-imports'
-        }
-      ]
     }
   },
   {
