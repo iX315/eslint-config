@@ -1,5 +1,5 @@
-import next from './src/next.mjs'
-import recommended from './src/recommended.mjs'
+import next from './configs/next.mjs'
+import recommended from './configs/recommended.mjs'
 
 export default {
   next,

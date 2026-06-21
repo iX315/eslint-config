@@ -14,7 +14,7 @@ describe('recommended config', () => {
 
   // Load the config once for all tests
   test('should import without errors', async () => {
-    const module = await import('../src/recommended.mjs')
+    const module = await import('../configs/recommended.mjs')
     recommended = module.default
     assert.ok(Array.isArray(recommended))
     assert.ok(recommended.length > 0)
@@ -91,7 +91,7 @@ describe('linting behavior - JavaScript', () => {
   test('setup temp directory with config', () => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'eslint-test-'))
 
-    const configContent = `import recommended from '${path.resolve(__dirname, '../src/recommended.mjs').replace(/\\/g, '/')}'
+    const configContent = `import recommended from '${path.resolve(__dirname, '../configs/recommended.mjs').replace(/\\/g, '/')}'
 export default recommended
 `
     fs.writeFileSync(path.join(tempDir, 'eslint.config.mjs'), configContent)
@@ -193,7 +193,7 @@ describe('linting behavior - TypeScript', () => {
   test('setup temp directory with config', () => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'eslint-test-ts-'))
 
-    const configContent = `import recommended from '${path.resolve(__dirname, '../src/recommended.mjs').replace(/\\/g, '/')}'
+    const configContent = `import recommended from '${path.resolve(__dirname, '../configs/recommended.mjs').replace(/\\/g, '/')}'
 export default recommended
 `
     fs.writeFileSync(path.join(tempDir, 'eslint.config.mjs'), configContent)

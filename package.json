@@ -1,16 +1,38 @@
 {
   "name": "@ix315/eslint-config",
   "version": "1.1.0",
-  "description": "",
+  "description": "Shared ESLint config for React, TypeScript, and Next.js projects",
   "main": "index.mjs",
   "types": "types.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "types": "./types.d.ts"
+    },
+    "./recommended": {
+      "import": "./configs/recommended.mjs"
+    },
+    "./next": {
+      "import": "./configs/next.mjs"
+    }
+  },
+  "files": [
+    "index.mjs",
+    "configs/",
+    "types.d.ts"
+  ],
   "scripts": {
-    "test": "node --test __tests__/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "lint": "eslint ."
   },
   "keywords": [
     "eslint",
-    "eslintconfig"
+    "eslint-config",
+    "eslint-plugin",
+    "typescript",
+    "react",
+    "next"
   ],
   "author": {
     "name": "Jury Giannelli",
@@ -18,7 +40,7 @@
     "url": "https://jurygiannelli.dev/"
   },
   "license": "ISC",
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@11.8.0",
   "dependencies": {
     "@eslint-react/eslint-plugin": "^5.7.1",
     "@eslint/js": "^10.0.1",

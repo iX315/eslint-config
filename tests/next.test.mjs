@@ -5,7 +5,7 @@ import * as path from 'node:path'
 import * as fs from 'node:fs'
 
 // Import the next config
-import nextConfig from '../src/next.mjs'
+import nextConfig from '../configs/next.mjs'
 
 const linter = new Linter()
 
